@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '序號': index + 1,
             '小時': r.h,
             '分鐘': r.m,
-            '小計 (小時)': parseFloat(r.rowTotal.toFixed(2))
+            '小計 (小時)': parseFloat(r.rowTotal.toFixed(5))
         }));
 
         const totalH = records.reduce((sum, r) => sum + r.rowTotal, 0);
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '序號': '總計',
             '小時': '',
             '分鐘': '',
-            '小計 (小時)': parseFloat(totalH.toFixed(2))
+            '小計 (小時)': parseFloat(totalH.toFixed(5))
         });
 
         const worksheet = XLSX.utils.json_to_sheet(data);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (records.length === 0) {
             emptyState.style.display = 'block';
             totalCountText.textContent = '0';
-            totalHoursText.textContent = '0.00';
+            totalHoursText.textContent = '0.00000000';
             return;
         }
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tr.innerHTML = `
                 <td>${record.h} h</td>
                 <td>${record.m} m</td>
-                <td>${record.rowTotal.toFixed(2)} 小時</td>
+                <td>${record.rowTotal.toFixed(9)} 小時</td>
                 <td>
                     <button class="delete-btn" onclick="deleteRecord(${record.id})">刪除</button>
                 </td>
@@ -117,6 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         totalCountText.textContent = records.length;
-        totalHoursText.textContent = totalH.toFixed(2);
+        totalHoursText.textContent = totalH.toFixed(9);
     }
 });
