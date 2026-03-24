@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時分總和計時器</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>加班計算</h1>
+        </header>
+
+        <section class="card input-section">
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="hours-input">小時 (h)</label>
+                    <input type="number" id="hours-input" placeholder="0" min="0" step="1">
+                </div>
+                <div class="input-field">
+                    <label for="minutes-input">分鐘 (m)</label>
+                    <input type="number" id="minutes-input" placeholder="0" min="0" step="1">
+                </div>
+                <button id="add-btn" class="primary-btn">新增資料</button>
+            </div>
+        </section>
+        <footer class="card summary-section">
+            <div class="summary-item">
+                <span class="label">總記錄筆數</span>
+                <span class="value" id="total-count">0</span>
+            </div>
+            <div class="summary-item highlight">
+                <span class="label">當前總時數</span>
+                <span class="value"><span id="total-hours">0.00</span> <small>小時</small></span>
+            </div>
+            <div class="summary-actions" style="display: flex; gap: 1rem;">
+                <button id="export-btn" class="secondary-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">匯出 Excel</button>
+                <button id="clear-btn" class="secondary-btn">清除全部</button>
+            </div>
+        </footer>
+        <section class="card table-section">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>小時</th>
+                            <th>分鐘</th>
+                            <th>小計 (小時)</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="record-list">
+                        <!-- 資料將由 JS 動態產生 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="empty-state" id="empty-state">
+                <p>尚無資料，請從上方新增。</p>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
